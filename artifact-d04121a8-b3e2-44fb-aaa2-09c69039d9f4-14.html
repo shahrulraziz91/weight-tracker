@@ -1,0 +1,689 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🥗 Diet & Weight Tracker 2026</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(160deg,#f0fdf4 0%,#dcfce7 50%,#d1fae5 100%);
+  min-height:100vh; color:#1a3a2a; padding:20px 12px 60px;
+}
+.wrap { max-width:900px; margin:0 auto; }
+
+.hdr { text-align:center; margin-bottom:20px; }
+.hdr .icons { font-size:2em; margin-bottom:6px; animation:bob 2s ease-in-out infinite; }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+.hdr h1 { font-size:clamp(1.3em,5vw,2em); font-weight:800; color:#15803d; margin-bottom:6px; }
+.hdr .sub { background:#166534; color:#bbf7d0; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.77em; }
+
+.sync-bar {
+  background:#fff; border:1.5px solid #bbf7d0; border-radius:14px;
+  padding:12px 16px; margin-bottom:16px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  box-shadow:0 2px 10px rgba(22,101,52,.07);
+}
+.sync-info { display:flex; align-items:center; gap:8px; font-size:0.8em; }
+.sync-dot { width:10px; height:10px; border-radius:50%; background:#d1d5db; flex-shrink:0; transition:background .3s; }
+.sync-dot.online  { background:#22c55e; animation:pulse-g 2s infinite; }
+.sync-dot.offline { background:#ef4444; }
+.sync-dot.syncing { background:#f59e0b; animation:pulse-y 1s infinite; }
+@keyframes pulse-g { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
+@keyframes pulse-y { 0%,100%{opacity:1} 50%{opacity:.4} }
+.sync-txt  { color:#374151; font-weight:600; font-size:0.85em; }
+.sync-time { font-size:0.68em; color:#9ca3af; margin-top:2px; }
+.btn-sync { padding:8px 16px; border-radius:50px; border:1px solid #86efac; background:#dcfce7; color:#15803d; font-size:0.78em; font-weight:700; cursor:pointer; transition:all .2s; white-space:nowrap; }
+.btn-sync:hover { background:#bbf7d0; transform:scale(1.03); }
+
+.tips { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
+.tip { background:#fff; border:1.5px solid #bbf7d0; border-radius:12px; padding:9px 12px; text-align:center; font-size:0.72em; color:#374151; flex:1; min-width:80px; max-width:140px; box-shadow:0 2px 8px rgba(22,101,52,.06); }
+.tip .ti { font-size:1.3em; display:block; margin-bottom:2px; }
+.tip .tt { color:#15803d; font-weight:700; }
+
+.status-bar { text-align:center; margin-bottom:14px; }
+.spill { display:inline-flex; align-items:center; gap:7px; padding:6px 18px; border-radius:50px; font-size:0.78em; font-weight:700; }
+.spill.ok  { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+.spill.chg { background:#fef9c3; color:#854d0e; border:1px solid #fde047; }
+.spill.clr { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; }
+.dot { width:7px; height:7px; border-radius:50%; background:currentColor; animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+@media(max-width:560px){ .stats{ grid-template-columns:repeat(2,1fr); } }
+.sbox { background:#fff; border-radius:14px; padding:14px 10px; text-align:center; border:1.5px solid #bbf7d0; box-shadow:0 2px 10px rgba(22,101,52,.07); transition:transform .2s; }
+.sbox:hover { transform:translateY(-2px); }
+.sbox .si { font-size:1.3em; margin-bottom:4px; }
+.sbox .sl { font-size:0.62em; color:#6b7280; text-transform:uppercase; letter-spacing:.8px; margin-bottom:3px; }
+.sbox .sv { font-size:1.15em; font-weight:800; color:#15803d; }
+.sv.loss { color:#16a34a; } .sv.gain { color:#dc2626; }
+
+.tbls { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
+@media(max-width:560px){ .tbls{ grid-template-columns:1fr; } }
+.pc { background:#fff; border-radius:16px; padding:16px; box-shadow:0 3px 16px rgba(22,101,52,.08); }
+.pc.S { border-top:4px solid #22c55e; }
+.pc.F { border-top:4px solid #f472b6; }
+.ph { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.pav { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.2em; }
+.S .pav { background:#dcfce7; border:2px solid #22c55e; }
+.F .pav { background:#fce7f3; border:2px solid #f472b6; }
+.ph h3 { font-size:1em; font-weight:700; color:#15803d; }
+.ph p  { font-size:0.68em; color:#9ca3af; margin-top:1px; }
+.stbl { max-height:260px; overflow-y:auto; border-radius:8px; }
+.stbl::-webkit-scrollbar { width:3px; }
+.stbl::-webkit-scrollbar-thumb { background:#bbf7d0; border-radius:3px; }
+table { width:100%; border-collapse:collapse; font-size:0.8em; }
+thead th {
+  background:#f0fdf4; color:#15803d; font-weight:700; padding:8px 6px;
+  text-align:center; font-size:0.72em; text-transform:uppercase; letter-spacing:.4px;
+  position:sticky; top:0; z-index:2; border-bottom:2px solid #bbf7d0;
+}
+tbody tr { border-bottom:1px solid #f0fdf4; }
+tbody tr:hover { background:#f0fdf4; }
+td { padding:5px 6px; text-align:center; }
+.wk { color:#9ca3af; font-size:0.75em; font-weight:600; }
+.dt { font-size:0.78em; color:#374151; }
+input[type=number] {
+  width:70px; padding:5px 6px; border:1.5px solid #d1d5db; border-radius:8px;
+  font-size:0.85em; text-align:center; color:#1a3a2a; background:#f9fafb;
+  transition:all .2s; -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; }
+input[type=number]::placeholder { color:#d1d5db; font-size:0.85em; }
+input[type=number]:focus { outline:none; border-color:#22c55e; background:#f0fdf4; box-shadow:0 0 0 3px rgba(34,197,94,.15); }
+.F input[type=number]:focus { border-color:#f472b6; background:#fdf2f8; box-shadow:0 0 0 3px rgba(244,114,182,.15); }
+input.ok  { border-color:#22c55e!important; background:#f0fdf4!important; color:#15803d!important; font-weight:700!important; }
+input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:#dc2626!important; }
+
+.btns { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:16px; }
+.btn { display:inline-flex; align-items:center; gap:7px; padding:11px 20px; border:none; border-radius:50px; font-size:0.85em; font-weight:700; cursor:pointer; transition:all .2s cubic-bezier(.34,1.56,.64,1); font-family:inherit; white-space:nowrap; }
+.btn:hover  { transform:translateY(-2px) scale(1.04); }
+.btn:active { transform:scale(.97); }
+.bg  { background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; box-shadow:0 4px 14px rgba(34,197,94,.35); }
+.bb  { background:linear-gradient(135deg,#3b82f6,#1d4ed8); color:#fff; box-shadow:0 4px 14px rgba(59,130,246,.35); }
+.ba  { background:linear-gradient(135deg,#f59e0b,#d97706); color:#fff; box-shadow:0 4px 14px rgba(245,158,11,.35); }
+.bgr { background:#f3f4f6; color:#6b7280; border:1.5px solid #e5e7eb; }
+.bgr:hover { color:#dc2626; border-color:#fca5a5; background:#fef2f2; }
+
+.ccard { background:#fff; border-radius:16px; padding:20px; box-shadow:0 4px 20px rgba(22,101,52,.09); border:1.5px solid #bbf7d0; }
+.ctop { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.ctop h2 { font-size:0.95em; font-weight:800; color:#15803d; }
+.ctop p  { font-size:0.68em; color:#6b7280; margin-top:2px; }
+.cleg { display:flex; gap:14px; align-items:center; }
+.cli  { display:flex; align-items:center; gap:5px; font-size:0.76em; color:#374151; font-weight:600; }
+.cld  { width:10px; height:10px; border-radius:50%; }
+.cpills { display:flex; gap:10px; justify-content:center; margin-bottom:12px; flex-wrap:wrap; }
+.cp { padding:4px 12px; border-radius:50px; font-size:0.72em; font-weight:700; }
+.cp.s { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+.cp.f { background:#fce7f3; color:#9d174d; border:1px solid #f9a8d4; }
+.cscroll { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; }
+.cscroll::-webkit-scrollbar { height:4px; }
+.cscroll::-webkit-scrollbar-thumb { background:#bbf7d0; border-radius:3px; }
+.cinner { position:relative; height:360px; min-width:900px; }
+.nodata { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#9ca3af; font-size:.88em; background:rgba(240,253,244,.85); border-radius:10px; text-align:center; padding:20px; }
+.nodata span:first-child { font-size:2.5em; }
+
+.foot { text-align:center; margin-top:22px; color:#6b7280; font-size:0.7em; }
+
+.toast { position:fixed; bottom:20px; right:16px; left:16px; max-width:320px; margin:0 auto; padding:12px 18px; border-radius:12px; font-size:0.84em; font-weight:700; opacity:0; transform:translateY(16px) scale(.95); transition:all .28s cubic-bezier(.34,1.56,.64,1); z-index:9999; pointer-events:none; box-shadow:0 6px 20px rgba(0,0,0,.15); text-align:center; }
+.toast.show   { opacity:1; transform:translateY(0) scale(1); }
+.toast.green  { background:#dcfce7; color:#15803d; border:1.5px solid #86efac; }
+.toast.orange { background:#fef9c3; color:#854d0e; border:1.5px solid #fde047; }
+.toast.red    { background:#fee2e2; color:#991b1b; border:1.5px solid #fca5a5; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hdr">
+  <div class="icons">🥗 💪 ⚖️ 🏃 🥦</div>
+  <h1>Diet &amp; Weight Tracker 2026</h1>
+  <p class="sub">🌿 Shahrul &amp; Fateha · Every Friday · Jan → Jul 2026</p>
+</div>
+
+<!-- SYNC BAR -->
+<div class="sync-bar">
+  <div class="sync-info">
+    <div class="sync-dot" id="syncDot"></div>
+    <div>
+      <div class="sync-txt"  id="syncTxt">🔄 Connecting to shared database...</div>
+      <div class="sync-time" id="syncTime">Shahrul &amp; Fateha share the same cloud data</div>
+    </div>
+  </div>
+  <button class="btn-sync" onclick="loadFromDB()">🔄 Refresh Data</button>
+</div>
+
+<!-- TIPS -->
+<div class="tips">
+  <div class="tip"><span class="ti">🎯</span><span class="tt">Consistent</span><br>Log every week</div>
+  <div class="tip"><span class="ti">💧</span><span class="tt">Hydrate</span><br>8 glasses/day</div>
+  <div class="tip"><span class="ti">🥦</span><span class="tt">Eat Clean</span><br>Less sugar</div>
+  <div class="tip"><span class="ti">🏃</span><span class="tt">Exercise</span><br>30 min/day</div>
+  <div class="tip"><span class="ti">😴</span><span class="tt">Rest</span><br>Sleep 8 hrs</div>
+</div>
+
+<!-- STATUS -->
+<div class="status-bar">
+  <div class="spill ok" id="spill">
+    <div class="dot"></div><span id="stxt">Ready!</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="sbox"><div class="si">🧑</div><div class="sl">Shahrul Latest</div><div class="sv" id="sLat">— kg</div></div>
+  <div class="sbox"><div class="si">📊</div><div class="sl">Shahrul Change</div><div class="sv" id="sCh">—</div></div>
+  <div class="sbox"><div class="si">👩</div><div class="sl">Fateha Latest</div><div class="sv" id="fLat">— kg</div></div>
+  <div class="sbox"><div class="si">📊</div><div class="sl">Fateha Change</div><div class="sv" id="fCh">—</div></div>
+</div>
+
+<!-- TABLES -->
+<div class="tbls">
+  <div class="pc S">
+    <div class="ph"><div class="pav">🧑</div><div><h3>Shahrul</h3><p>Tap to enter weight (kg)</p></div></div>
+    <div class="stbl">
+      <table id="TS">
+        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pc F">
+    <div class="ph"><div class="pav">👩</div><div><h3>Fateha</h3><p>Tap to enter weight (kg)</p></div></div>
+    <div class="stbl">
+      <table id="TF">
+        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BUTTONS -->
+<div class="btns">
+  <button class="btn bb" onclick="doChart()">📈 Update Graph</button>
+  <button class="btn bg" onclick="doSave()">☁️ Save to Cloud</button>
+  <button class="btn ba" onclick="doCSV()">📥 Download CSV</button>
+  <button class="btn bgr" onclick="doClear()">🗑️ Clear All</button>
+</div>
+
+<!-- CHART -->
+<div class="ccard">
+  <div class="ctop">
+    <div><h2>📈 Weight Progress</h2><p>Jan–Jul 2026 · Swipe chart to scroll →</p></div>
+    <div class="cleg">
+      <div class="cli"><div class="cld" style="background:#22c55e"></div>Shahrul</div>
+      <div class="cli"><div class="cld" style="background:#f472b6"></div>Fateha</div>
+    </div>
+  </div>
+  <div class="cpills">
+    <div class="cp s">🧑 Shahrul: <b id="sCnt">0</b>/30 weeks</div>
+    <div class="cp f">👩 Fateha: <b id="fCnt">0</b>/30 weeks</div>
+  </div>
+  <div class="cscroll">
+    <div class="cinner">
+      <canvas id="myChart"></canvas>
+      <div class="nodata" id="noData">
+        <span>📊</span>
+        <span>Enter weights above &amp; tap<br><b>📈 Update Graph</b></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">🌿 Healthy Journey 2026 · ☁️ Firebase Powered · Made with ❤️</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+<script>
+'use strict';
+
+// ╔══════════════════════════════════════════════╗
+// ║  ✅ FIREBASE URL — YOUR DATABASE IS SET!     ║
+// ╚══════════════════════════════════════════════╝
+var DB_URL = 'https://weight-tracker-2026-default-rtdb.firebaseio.com';
+
+// ── Register Chart plugin ────────────────────────────────
+if (typeof Chart !== 'undefined' && typeof ChartDataLabels !== 'undefined') {
+  Chart.register(ChartDataLabels);
+}
+
+// ── Generate all Fridays Jan 2 → Jul 31 2026 ────────────
+var LABELS = [];
+(function() {
+  var d   = new Date(2026, 0, 2);
+  var end = new Date(2026, 6, 31);
+  while (d <= end) {
+    LABELS.push(d.toLocaleDateString('en-GB', {
+      day:'2-digit', month:'short', year:'numeric'
+    }));
+    d.setDate(d.getDate() + 7);
+  }
+})();
+var N = LABELS.length; // 30 weeks
+
+// ── Build tables ─────────────────────────────────────────
+(function() {
+  ['TS','TF'].forEach(function(tid) {
+    var tb = document.querySelector('#' + tid + ' tbody');
+    for (var i = 0; i < N; i++) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td><span class="wk">W' + (i+1) + '</span></td>' +
+        '<td><span class="dt">' + LABELS[i] + '</span></td>' +
+        '<td><input type="number" id="' + tid + '_' + i + '" ' +
+        'placeholder="kg" min="30" max="300" step="0.1" ' +
+        'inputmode="decimal" oninput="onInp(this)"></td>';
+      tb.appendChild(tr);
+    }
+  });
+})();
+
+// ── Input handler ────────────────────────────────────────
+function onInp(el) {
+  var v = parseFloat(el.value);
+  el.className = '';
+  if (el.value === '') { doChart(); return; }
+  if (isNaN(v) || v < 30 || v > 300) { el.className = 'bad'; return; }
+  el.className = 'ok';
+  setSt('chg', '⚠️ Unsaved — tap ☁️ Save to Cloud!');
+  doChart();
+}
+
+// ── Read data from inputs ────────────────────────────────
+function rd(tid) {
+  var arr = [];
+  for (var i = 0; i < N; i++) {
+    var el = document.getElementById(tid + '_' + i);
+    if (!el || el.value === '' || el.className === 'bad') {
+      arr.push(null);
+    } else {
+      var v = parseFloat(el.value);
+      arr.push(isNaN(v) ? null : v);
+    }
+  }
+  return arr;
+}
+
+// ── Fill inputs from loaded array ─────────────────────────
+function fillInputs(tid, arr) {
+  if (!arr || !Array.isArray(arr)) return;
+  for (var i = 0; i < N; i++) {
+    var el = document.getElementById(tid + '_' + i);
+    if (!el) continue;
+    var v = arr[i];
+    if (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) >= 30 && Number(v) <= 300) {
+      el.value = Number(v);
+      el.className = 'ok';
+    } else {
+      el.value = '';
+      el.className = '';
+    }
+  }
+}
+
+// ── Sync status ───────────────────────────────────────────
+function setSyncStatus(state, msg, sub) {
+  document.getElementById('syncDot').className = 'sync-dot ' + state;
+  document.getElementById('syncTxt').textContent = msg;
+  if (sub !== undefined) {
+    document.getElementById('syncTime').textContent = sub;
+  }
+}
+
+// ╔══════════════════════════════════════════════╗
+// ║  ☁️  SAVE TO FIREBASE                        ║
+// ╚══════════════════════════════════════════════╝
+function doSave() {
+  var s = rd('TS');
+  var f = rd('TF');
+  var hasAny = s.concat(f).some(function(v) { return v !== null; });
+  if (!hasAny) {
+    showToast('⚠️ Enter at least one weight first!', 'orange');
+    return;
+  }
+
+  setSyncStatus('syncing', '☁️ Saving to cloud...');
+  showToast('☁️ Saving...', 'orange');
+
+  var now = new Date().toLocaleString('en-MY', {
+    day:'2-digit', month:'short', year:'numeric',
+    hour:'2-digit', minute:'2-digit'
+  });
+
+  fetch(DB_URL + '/weightTracker2026.json', {
+    method:  'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ shahrul:s, fateha:f, lastUpdated:now })
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  })
+  .then(function() {
+    setSyncStatus('online', '✅ Saved to cloud!', 'Last saved: ' + now);
+    setSt('ok', '✅ Saved at ' + now);
+    showToast('☁️ Saved! Fateha can now see your data! 🎉', 'green');
+  })
+  .catch(function(err) {
+    console.error('Save error:', err);
+    setSyncStatus('offline', '❌ Save failed!', 'Check internet connection');
+    showToast('❌ Save failed! Check your internet.', 'red');
+  });
+}
+
+// ╔══════════════════════════════════════════════╗
+// ║  ☁️  LOAD FROM FIREBASE                      ║
+// ╚══════════════════════════════════════════════╝
+function loadFromDB() {
+  setSyncStatus('syncing', '🔄 Loading shared data...');
+
+  fetch(DB_URL + '/weightTracker2026.json')
+  .then(function(res) {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  })
+  .then(function(data) {
+    if (!data) {
+      setSyncStatus('online',
+        '✅ Connected — No data saved yet',
+        'Enter weights & tap ☁️ Save to Cloud'
+      );
+      showToast('✅ Connected! No data saved yet.', 'orange');
+      return;
+    }
+
+    // Fill both tables
+    fillInputs('TS', data.shahrul);
+    fillInputs('TF', data.fateha);
+
+    var lu = data.lastUpdated || 'unknown';
+    setSyncStatus('online', '✅ Shared data loaded!', 'Last saved: ' + lu);
+    setSt('ok', '✅ Loaded · ' + lu);
+    showToast('✅ Shared data loaded!', 'green');
+    doChart();
+  })
+  .catch(function(err) {
+    console.error('Load error:', err);
+    setSyncStatus('offline',
+      '❌ Cannot reach database',
+      'Check internet connection'
+    );
+    showToast('❌ Cannot load data. Check internet!', 'red');
+  });
+}
+
+// ── Update stat cards ─────────────────────────────────────
+function updStats(sA, fA) {
+  var sf = sA.filter(function(v) { return v !== null; });
+  var ff = fA.filter(function(v) { return v !== null; });
+
+  document.getElementById('sCnt').textContent = sf.length;
+  document.getElementById('fCnt').textContent = ff.length;
+  document.getElementById('sLat').textContent = sf.length ? sf[sf.length-1] + ' kg' : '— kg';
+  document.getElementById('fLat').textContent = ff.length ? ff[ff.length-1] + ' kg' : '— kg';
+
+  function chg(a, id) {
+    var el = document.getElementById(id);
+    if (a.length < 2) { el.textContent = '—'; el.className = 'sv'; return; }
+    var diff = (a[a.length-1] - a[0]).toFixed(1);
+    el.textContent = diff > 0 ? '▲ +'+diff+' kg' : diff < 0 ? '▼ '+diff+' kg' : '● 0 kg';
+    el.className = 'sv ' + (diff < 0 ? 'loss' : diff > 0 ? 'gain' : '');
+  }
+  chg(sf, 'sCh');
+  chg(ff, 'fCh');
+}
+
+// ── Draw Chart ────────────────────────────────────────────
+var CH = null;
+
+function doChart() {
+  if (typeof Chart === 'undefined') return;
+
+  var sA = rd('TS');
+  var fA = rd('TF');
+  updStats(sA, fA);
+
+  var all = sA.concat(fA).filter(function(v) { return v !== null; });
+  document.getElementById('noData').style.display = all.length ? 'none' : 'flex';
+
+  if (CH) { CH.destroy(); CH = null; }
+  if (!all.length) return;
+
+  var yMin = Math.floor(Math.min.apply(null, all)) - 2;
+  var yMax = Math.ceil(Math.max.apply(null, all))  + 3;
+
+  var ctx = document.getElementById('myChart').getContext('2d');
+
+  var sg = ctx.createLinearGradient(0,0,0,360);
+  sg.addColorStop(0, 'rgba(34,197,94,0.45)');
+  sg.addColorStop(1, 'rgba(34,197,94,0.02)');
+
+  var fg = ctx.createLinearGradient(0,0,0,360);
+  fg.addColorStop(0, 'rgba(244,114,182,0.45)');
+  fg.addColorStop(1, 'rgba(244,114,182,0.02)');
+
+  var sPR = sA.map(function(v) { return v !== null ? 7 : 0; });
+  var fPR = fA.map(function(v) { return v !== null ? 7 : 0; });
+  var sPC = sA.map(function(v) { return v !== null ? '#22c55e' : 'transparent'; });
+  var fPC = fA.map(function(v) { return v !== null ? '#f472b6' : 'transparent'; });
+
+  CH = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: LABELS,
+      datasets: [
+        {
+          label: 'Shahrul',
+          data:  sA,
+          borderColor: '#22c55e',
+          backgroundColor: sg,
+          borderWidth: 3,
+          pointRadius: sPR,
+          pointHoverRadius: sPR.map(function(v){ return v ? v+4 : 0; }),
+          pointBackgroundColor: sPC,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          tension: 0.4,
+          spanGaps: true,
+          fill: true
+        },
+        {
+          label: 'Fateha',
+          data:  fA,
+          borderColor: '#f472b6',
+          backgroundColor: fg,
+          borderWidth: 3,
+          pointRadius: fPR,
+          pointHoverRadius: fPR.map(function(v){ return v ? v+4 : 0; }),
+          pointBackgroundColor: fPC,
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          tension: 0.4,
+          spanGaps: true,
+          fill: true
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 600 },
+      layout: { padding: { top:44, right:20, bottom:6, left:6 } },
+      interaction: { mode:'index', intersect:false },
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor: '#15803d',
+          titleColor: '#fff',
+          bodyColor: '#dcfce7',
+          borderColor: '#86efac',
+          borderWidth: 1,
+          padding: 12,
+          cornerRadius: 10,
+          callbacks: {
+            label: function(c) {
+              return c.raw !== null
+                ? '  ' + c.dataset.label + ': ' + c.raw + ' kg'
+                : '  ' + c.dataset.label + ': —';
+            }
+          }
+        },
+        datalabels: {
+          display: function(ctx) {
+            return ctx.dataset.data[ctx.dataIndex] !== null;
+          },
+          formatter: function(v) { return v + ' kg'; },
+          align: 'top', anchor: 'end', offset: 6,
+          color: function(ctx) { return ctx.dataset.borderColor; },
+          backgroundColor: '#fff',
+          borderColor: function(ctx) { return ctx.dataset.borderColor; },
+          borderWidth: 1.5, borderRadius: 6,
+          font: { weight:'bold', size:10 },
+          padding: { top:2, bottom:2, left:5, right:5 }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color:'rgba(0,0,0,0.06)' },
+          border: { display:false },
+          ticks: {
+            color: '#6b7280',
+            font: { size:9, weight:'600' },
+            maxRotation: 45, minRotation: 45,
+            autoSkip: false
+          },
+          title: {
+            display: true,
+            text: 'Date (Every Friday — Jan to Jul 2026)',
+            color: '#15803d',
+            font: { size:11, weight:'700' }
+          }
+        },
+        y: {
+          min: yMin, max: yMax,
+          grid: { color:'rgba(0,0,0,0.06)' },
+          border: { display:false },
+          ticks: {
+            color: '#6b7280',
+            font: { size:11 },
+            callback: function(v) { return v + ' kg'; },
+            stepSize: 1
+          },
+          title: {
+            display: true,
+            text: 'Weight (kg)',
+            color: '#15803d',
+            font: { size:11, weight:'700' }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ── Download CSV ──────────────────────────────────────────
+function doCSV() {
+  var s = rd('TS'), f = rd('TF');
+  if (!s.concat(f).some(function(v){ return v!==null; })) {
+    showToast('⚠️ No data to export!', 'orange'); return;
+  }
+  var rows = ['Week,Date,Shahrul (kg),Fateha (kg),Difference (kg)'];
+  for (var i = 0; i < N; i++) {
+    var sv = s[i]!==null ? s[i] : '';
+    var fv = f[i]!==null ? f[i] : '';
+    var df = (s[i]!==null && f[i]!==null) ? (s[i]-f[i]).toFixed(1) : '';
+    rows.push('W'+(i+1)+','+LABELS[i]+','+sv+','+fv+','+df);
+  }
+  var sf = s.filter(function(v){return v!==null;});
+  var ff = f.filter(function(v){return v!==null;});
+  rows.push('','--- SUMMARY ---',
+    'Shahrul Start,'  + (sf.length ? sf[0]+' kg' : 'N/A'),
+    'Shahrul Latest,' + (sf.length ? sf[sf.length-1]+' kg' : 'N/A'),
+    'Shahrul Change,' + (sf.length>=2 ? (sf[sf.length-1]-sf[0]).toFixed(1)+' kg' : 'N/A'),
+    'Fateha Start,'   + (ff.length ? ff[0]+' kg' : 'N/A'),
+    'Fateha Latest,'  + (ff.length ? ff[ff.length-1]+' kg' : 'N/A'),
+    'Fateha Change,'  + (ff.length>=2 ? (ff[ff.length-1]-ff[0]).toFixed(1)+' kg' : 'N/A'),
+    'Exported,'       + new Date().toLocaleString()
+  );
+  var b = new Blob([rows.join('\n')], {type:'text/csv'});
+  var u = URL.createObjectURL(b);
+  var a = document.createElement('a');
+  a.href=u; a.download='weight_tracker_2026.csv';
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(u);
+  showToast('📥 CSV downloaded!', 'green');
+}
+
+// ── Clear all ─────────────────────────────────────────────
+function doClear() {
+  if (!confirm('🗑️ Delete ALL cloud data?\n\nThis clears BOTH Shahrul & Fateha data!\nThis cannot be undone!')) return;
+
+  fetch(DB_URL + '/weightTracker2026.json', { method:'DELETE' })
+  .then(function() {
+    for (var i=0; i<N; i++) {
+      ['TS','TF'].forEach(function(t) {
+        var el = document.getElementById(t+'_'+i);
+        if (el) { el.value=''; el.className=''; }
+      });
+    }
+    setSyncStatus('online','✅ Cloud data cleared','Start fresh anytime');
+    setSt('clr','🗑️ All data cleared from cloud');
+    showToast('🗑️ All cloud data deleted!','red');
+    doChart();
+  })
+  .catch(function() {
+    showToast('❌ Delete failed — check internet!','red');
+  });
+}
+
+// ── UI Helpers ────────────────────────────────────────────
+function setSt(type, msg) {
+  var p = document.getElementById('spill');
+  p.className = 'spill ' + (type==='ok' ? 'ok' : type==='chg' ? 'chg' : 'clr');
+  document.getElementById('stxt').textContent = msg;
+}
+
+var TT;
+function showToast(msg, col) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + col;
+  clearTimeout(TT);
+  TT = setTimeout(function() { t.className = 'toast'; }, 3500);
+}
+
+// ── INIT ──────────────────────────────────────────────────
+window.onload = function() {
+  loadFromDB(); // Auto-load shared data when page opens
+};
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
