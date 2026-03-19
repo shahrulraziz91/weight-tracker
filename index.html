@@ -1,19 +1,4 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -26,14 +11,16 @@ body {
   background: linear-gradient(160deg,#f0fdf4 0%,#dcfce7 50%,#d1fae5 100%);
   min-height:100vh; color:#1a3a2a; padding:20px 12px 60px;
 }
-.wrap { max-width:900px; margin:0 auto; }
+.wrap { max-width:960px; margin:0 auto; }
 
+/* HEADER */
 .hdr { text-align:center; margin-bottom:20px; }
 .hdr .icons { font-size:2em; margin-bottom:6px; animation:bob 2s ease-in-out infinite; }
 @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
 .hdr h1 { font-size:clamp(1.3em,5vw,2em); font-weight:800; color:#15803d; margin-bottom:6px; }
 .hdr .sub { background:#166534; color:#bbf7d0; display:inline-block; padding:4px 14px; border-radius:20px; font-size:0.77em; }
 
+/* SYNC BAR */
 .sync-bar {
   background:#fff; border:1.5px solid #bbf7d0; border-radius:14px;
   padding:12px 16px; margin-bottom:16px;
@@ -50,13 +37,15 @@ body {
 .sync-txt  { color:#374151; font-weight:600; font-size:0.85em; }
 .sync-time { font-size:0.68em; color:#9ca3af; margin-top:2px; }
 .btn-sync { padding:8px 16px; border-radius:50px; border:1px solid #86efac; background:#dcfce7; color:#15803d; font-size:0.78em; font-weight:700; cursor:pointer; transition:all .2s; white-space:nowrap; }
-.btn-sync:hover { background:#bbf7d0; transform:scale(1.03); }
+.btn-sync:hover { background:#bbf7d0; }
 
+/* TIPS */
 .tips { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:16px; }
-.tip { background:#fff; border:1.5px solid #bbf7d0; border-radius:12px; padding:9px 12px; text-align:center; font-size:0.72em; color:#374151; flex:1; min-width:80px; max-width:140px; box-shadow:0 2px 8px rgba(22,101,52,.06); }
+.tip { background:#fff; border:1.5px solid #bbf7d0; border-radius:12px; padding:9px 12px; text-align:center; font-size:0.72em; color:#374151; flex:1; min-width:80px; max-width:140px; }
 .tip .ti { font-size:1.3em; display:block; margin-bottom:2px; }
 .tip .tt { color:#15803d; font-weight:700; }
 
+/* STATUS */
 .status-bar { text-align:center; margin-bottom:14px; }
 .spill { display:inline-flex; align-items:center; gap:7px; padding:6px 18px; border-radius:50px; font-size:0.78em; font-weight:700; }
 .spill.ok  { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
@@ -65,6 +54,7 @@ body {
 .dot { width:7px; height:7px; border-radius:50%; background:currentColor; animation:blink 2s infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
+/* STATS */
 .stats { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
 @media(max-width:560px){ .stats{ grid-template-columns:repeat(2,1fr); } }
 .sbox { background:#fff; border-radius:14px; padding:14px 10px; text-align:center; border:1.5px solid #bbf7d0; box-shadow:0 2px 10px rgba(22,101,52,.07); transition:transform .2s; }
@@ -74,6 +64,114 @@ body {
 .sbox .sv { font-size:1.15em; font-weight:800; color:#15803d; }
 .sv.loss { color:#16a34a; } .sv.gain { color:#dc2626; }
 
+/* ── BMI CARDS ── */
+.bmi-section {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;
+}
+@media(max-width:560px){ .bmi-section{ grid-template-columns:1fr; } }
+
+.bmi-card {
+  background:#fff; border-radius:16px; padding:18px;
+  box-shadow:0 3px 16px rgba(22,101,52,.08);
+  position:relative; overflow:hidden;
+}
+.bmi-card.S { border-top:4px solid #22c55e; }
+.bmi-card.F { border-top:4px solid #f472b6; }
+
+.bmi-card-header {
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.bmi-avatar {
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; font-size:1.2em;
+}
+.S .bmi-avatar { background:#dcfce7; border:2px solid #22c55e; }
+.F .bmi-avatar { background:#fce7f3; border:2px solid #f472b6; }
+.bmi-name { font-size:0.95em; font-weight:700; color:#15803d; }
+.bmi-meta { font-size:0.68em; color:#9ca3af; }
+
+/* BMI value display */
+.bmi-main {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:12px; flex-wrap:wrap; gap:8px;
+}
+.bmi-number {
+  font-size:2.4em; font-weight:900; line-height:1;
+}
+.bmi-number.underweight { color:#3b82f6; }
+.bmi-number.normal      { color:#22c55e; }
+.bmi-number.overweight  { color:#f59e0b; }
+.bmi-number.obese       { color:#ef4444; }
+
+.bmi-badge {
+  padding:5px 12px; border-radius:50px; font-size:0.75em; font-weight:700;
+  display:inline-block;
+}
+.bmi-badge.underweight { background:#dbeafe; color:#1d4ed8; border:1px solid #93c5fd; }
+.bmi-badge.normal      { background:#dcfce7; color:#15803d; border:1px solid #86efac; }
+.bmi-badge.overweight  { background:#fef9c3; color:#854d0e; border:1px solid #fde047; }
+.bmi-badge.obese       { background:#fee2e2; color:#991b1b; border:1px solid #fca5a5; }
+
+/* BMI progress bar */
+.bmi-bar-wrap {
+  margin-bottom:10px;
+}
+.bmi-bar-labels {
+  display:flex; justify-content:space-between;
+  font-size:0.6em; color:#9ca3af; margin-bottom:4px;
+}
+.bmi-bar-track {
+  height:10px; border-radius:50px; overflow:hidden;
+  background:linear-gradient(90deg,
+    #3b82f6 0%,#3b82f6 22%,
+    #22c55e 22%,#22c55e 50%,
+    #f59e0b 50%,#f59e0b 72%,
+    #ef4444 72%,#ef4444 100%
+  );
+  position:relative;
+}
+.bmi-needle {
+  position:absolute; top:-3px; width:4px; height:16px;
+  background:#1a3a2a; border-radius:2px;
+  transform:translateX(-50%);
+  transition:left .5s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 0 4px rgba(0,0,0,.3);
+}
+
+.bmi-stats-row {
+  display:flex; gap:8px; flex-wrap:wrap;
+}
+.bmi-stat {
+  flex:1; min-width:80px; background:#f0fdf4; border-radius:10px;
+  padding:8px 10px; text-align:center; border:1px solid #bbf7d0;
+}
+.bmi-stat.F-bg { background:#fdf2f8; border-color:#f9a8d4; }
+.bmi-stat-lbl { font-size:0.6em; color:#6b7280; text-transform:uppercase; letter-spacing:.5px; margin-bottom:2px; }
+.bmi-stat-val { font-size:0.88em; font-weight:700; color:#15803d; }
+.bmi-stat-val.F-col { color:#be185d; }
+
+/* BMI REFERENCE TABLE */
+.bmi-ref {
+  background:#fff; border-radius:14px; padding:16px;
+  border:1.5px solid #bbf7d0; margin-bottom:16px;
+  box-shadow:0 2px 10px rgba(22,101,52,.06);
+}
+.bmi-ref h3 { font-size:0.85em; font-weight:700; color:#15803d; margin-bottom:10px; }
+.bmi-ref-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+}
+@media(max-width:460px){ .bmi-ref-grid{ grid-template-columns:repeat(2,1fr); } }
+.bmi-ref-item {
+  border-radius:10px; padding:8px; text-align:center; font-size:0.72em;
+}
+.bmi-ref-item.underweight { background:#dbeafe; border:1px solid #93c5fd; }
+.bmi-ref-item.normal      { background:#dcfce7; border:1px solid #86efac; }
+.bmi-ref-item.overweight  { background:#fef9c3; border:1px solid #fde047; }
+.bmi-ref-item.obese       { background:#fee2e2; border:1px solid #fca5a5; }
+.bmi-ref-item .rng { font-weight:800; font-size:1em; color:#1a3a2a; }
+.bmi-ref-item .rcat { color:#6b7280; margin-top:2px; }
+
+/* TABLES */
 .tbls { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px; }
 @media(max-width:560px){ .tbls{ grid-template-columns:1fr; } }
 .pc { background:#fff; border-radius:16px; padding:16px; box-shadow:0 3px 16px rgba(22,101,52,.08); }
@@ -99,6 +197,11 @@ tbody tr:hover { background:#f0fdf4; }
 td { padding:5px 6px; text-align:center; }
 .wk { color:#9ca3af; font-size:0.75em; font-weight:600; }
 .dt { font-size:0.78em; color:#374151; }
+.bmi-cell { font-size:0.75em; font-weight:700; padding:2px 6px; border-radius:6px; }
+.bmi-cell.underweight { background:#dbeafe; color:#1d4ed8; }
+.bmi-cell.normal      { background:#dcfce7; color:#15803d; }
+.bmi-cell.overweight  { background:#fef9c3; color:#854d0e; }
+.bmi-cell.obese       { background:#fee2e2; color:#991b1b; }
 input[type=number] {
   width:70px; padding:5px 6px; border:1.5px solid #d1d5db; border-radius:8px;
   font-size:0.85em; text-align:center; color:#1a3a2a; background:#f9fafb;
@@ -112,6 +215,7 @@ input[type=number]:focus { outline:none; border-color:#22c55e; background:#f0fdf
 input.ok  { border-color:#22c55e!important; background:#f0fdf4!important; color:#15803d!important; font-weight:700!important; }
 input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:#dc2626!important; }
 
+/* BUTTONS */
 .btns { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:16px; }
 .btn { display:inline-flex; align-items:center; gap:7px; padding:11px 20px; border:none; border-radius:50px; font-size:0.85em; font-weight:700; cursor:pointer; transition:all .2s cubic-bezier(.34,1.56,.64,1); font-family:inherit; white-space:nowrap; }
 .btn:hover  { transform:translateY(-2px) scale(1.04); }
@@ -122,11 +226,17 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
 .bgr { background:#f3f4f6; color:#6b7280; border:1.5px solid #e5e7eb; }
 .bgr:hover { color:#dc2626; border-color:#fca5a5; background:#fef2f2; }
 
+/* CHART TABS */
+.chart-tabs { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.ctab { padding:8px 18px; border-radius:50px; border:1.5px solid #bbf7d0; background:#f0fdf4; color:#15803d; font-size:0.8em; font-weight:700; cursor:pointer; transition:all .2s; }
+.ctab.active { background:#22c55e; color:#fff; border-color:#22c55e; box-shadow:0 3px 10px rgba(34,197,94,.3); }
+
+/* CHART */
 .ccard { background:#fff; border-radius:16px; padding:20px; box-shadow:0 4px 20px rgba(22,101,52,.09); border:1.5px solid #bbf7d0; }
 .ctop { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
 .ctop h2 { font-size:0.95em; font-weight:800; color:#15803d; }
 .ctop p  { font-size:0.68em; color:#6b7280; margin-top:2px; }
-.cleg { display:flex; gap:14px; align-items:center; }
+.cleg { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
 .cli  { display:flex; align-items:center; gap:5px; font-size:0.76em; color:#374151; font-weight:600; }
 .cld  { width:10px; height:10px; border-radius:50%; }
 .cpills { display:flex; gap:10px; justify-content:center; margin-bottom:12px; flex-wrap:wrap; }
@@ -141,7 +251,6 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
 .nodata span:first-child { font-size:2.5em; }
 
 .foot { text-align:center; margin-top:22px; color:#6b7280; font-size:0.7em; }
-
 .toast { position:fixed; bottom:20px; right:16px; left:16px; max-width:320px; margin:0 auto; padding:12px 18px; border-radius:12px; font-size:0.84em; font-weight:700; opacity:0; transform:translateY(16px) scale(.95); transition:all .28s cubic-bezier(.34,1.56,.64,1); z-index:9999; pointer-events:none; box-shadow:0 6px 20px rgba(0,0,0,.15); text-align:center; }
 .toast.show   { opacity:1; transform:translateY(0) scale(1); }
 .toast.green  { background:#dcfce7; color:#15803d; border:1.5px solid #86efac; }
@@ -152,6 +261,7 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
 <body>
 <div class="wrap">
 
+<!-- HEADER -->
 <div class="hdr">
   <div class="icons">🥗 💪 ⚖️ 🏃 🥦</div>
   <h1>Diet &amp; Weight Tracker 2026</h1>
@@ -167,7 +277,7 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
       <div class="sync-time" id="syncTime">Shahrul &amp; Fateha share the same cloud data</div>
     </div>
   </div>
-  <button class="btn-sync" onclick="loadFromDB()">🔄 Refresh Data</button>
+  <button class="btn-sync" onclick="loadFromDB()">🔄 Refresh</button>
 </div>
 
 <!-- TIPS -->
@@ -181,12 +291,10 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
 
 <!-- STATUS -->
 <div class="status-bar">
-  <div class="spill ok" id="spill">
-    <div class="dot"></div><span id="stxt">Ready!</span>
-  </div>
+  <div class="spill ok" id="spill"><div class="dot"></div><span id="stxt">Ready!</span></div>
 </div>
 
-<!-- STATS -->
+<!-- WEIGHT STATS -->
 <div class="stats">
   <div class="sbox"><div class="si">🧑</div><div class="sl">Shahrul Latest</div><div class="sv" id="sLat">— kg</div></div>
   <div class="sbox"><div class="si">📊</div><div class="sl">Shahrul Change</div><div class="sv" id="sCh">—</div></div>
@@ -194,13 +302,133 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
   <div class="sbox"><div class="si">📊</div><div class="sl">Fateha Change</div><div class="sv" id="fCh">—</div></div>
 </div>
 
-<!-- TABLES -->
+<!-- ══ BMI CARDS ══ -->
+<div class="bmi-section">
+
+  <!-- SHAHRUL BMI -->
+  <div class="bmi-card S">
+    <div class="bmi-card-header">
+      <div class="bmi-avatar S">🧑</div>
+      <div>
+        <div class="bmi-name">Shahrul · BMI Monitor</div>
+        <div class="bmi-meta">Age 35 · Height 169 cm</div>
+      </div>
+    </div>
+    <div class="bmi-main">
+      <div>
+        <div style="font-size:0.7em;color:#6b7280;margin-bottom:2px;">Current BMI</div>
+        <div class="bmi-number normal" id="sBmiNum">—</div>
+      </div>
+      <div>
+        <div class="bmi-badge normal" id="sBmiCat">No data</div>
+        <div style="font-size:0.65em;color:#9ca3af;margin-top:4px;text-align:center;" id="sBmiEmoji">—</div>
+      </div>
+    </div>
+    <div class="bmi-bar-wrap">
+      <div class="bmi-bar-labels">
+        <span>Underweight<br>&lt;18.5</span>
+        <span>Normal<br>18.5–24.9</span>
+        <span>Overweight<br>25–29.9</span>
+        <span>Obese<br>≥30</span>
+      </div>
+      <div class="bmi-bar-track">
+        <div class="bmi-needle" id="sNeedle" style="left:0%"></div>
+      </div>
+    </div>
+    <div class="bmi-stats-row">
+      <div class="bmi-stat">
+        <div class="bmi-stat-lbl">Ideal Weight</div>
+        <div class="bmi-stat-val">59–71 kg</div>
+      </div>
+      <div class="bmi-stat">
+        <div class="bmi-stat-lbl">To Lose</div>
+        <div class="bmi-stat-val" id="sToLose">—</div>
+      </div>
+      <div class="bmi-stat">
+        <div class="bmi-stat-lbl">BMI Change</div>
+        <div class="bmi-stat-val" id="sBmiChg">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FATEHA BMI -->
+  <div class="bmi-card F">
+    <div class="bmi-card-header">
+      <div class="bmi-avatar F">👩</div>
+      <div>
+        <div class="bmi-name">Fateha · BMI Monitor</div>
+        <div class="bmi-meta">Age 35 · Height 160 cm</div>
+      </div>
+    </div>
+    <div class="bmi-main">
+      <div>
+        <div style="font-size:0.7em;color:#6b7280;margin-bottom:2px;">Current BMI</div>
+        <div class="bmi-number normal" id="fBmiNum">—</div>
+      </div>
+      <div>
+        <div class="bmi-badge normal" id="fBmiCat">No data</div>
+        <div style="font-size:0.65em;color:#9ca3af;margin-top:4px;text-align:center;" id="fBmiEmoji">—</div>
+      </div>
+    </div>
+    <div class="bmi-bar-wrap">
+      <div class="bmi-bar-labels">
+        <span>Underweight<br>&lt;18.5</span>
+        <span>Normal<br>18.5–24.9</span>
+        <span>Overweight<br>25–29.9</span>
+        <span>Obese<br>≥30</span>
+      </div>
+      <div class="bmi-bar-track">
+        <div class="bmi-needle" id="fNeedle" style="left:0%"></div>
+      </div>
+    </div>
+    <div class="bmi-stats-row">
+      <div class="bmi-stat F-bg">
+        <div class="bmi-stat-lbl">Ideal Weight</div>
+        <div class="bmi-stat-val F-col">53–64 kg</div>
+      </div>
+      <div class="bmi-stat F-bg">
+        <div class="bmi-stat-lbl">To Lose</div>
+        <div class="bmi-stat-val F-col" id="fToLose">—</div>
+      </div>
+      <div class="bmi-stat F-bg">
+        <div class="bmi-stat-lbl">BMI Change</div>
+        <div class="bmi-stat-val F-col" id="fBmiChg">—</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BMI REFERENCE -->
+<div class="bmi-ref">
+  <h3>📋 BMI Reference Chart (WHO Standard)</h3>
+  <div class="bmi-ref-grid">
+    <div class="bmi-ref-item underweight">
+      <div class="rng">💙 &lt; 18.5</div>
+      <div class="rcat">Underweight</div>
+    </div>
+    <div class="bmi-ref-item normal">
+      <div class="rng">💚 18.5–24.9</div>
+      <div class="rcat">Normal Weight</div>
+    </div>
+    <div class="bmi-ref-item overweight">
+      <div class="rng">💛 25.0–29.9</div>
+      <div class="rcat">Overweight</div>
+    </div>
+    <div class="bmi-ref-item obese">
+      <div class="rng">❤️ ≥ 30.0</div>
+      <div class="rcat">Obese</div>
+    </div>
+  </div>
+</div>
+
+<!-- INPUT TABLES -->
 <div class="tbls">
   <div class="pc S">
     <div class="ph"><div class="pav">🧑</div><div><h3>Shahrul</h3><p>Tap to enter weight (kg)</p></div></div>
     <div class="stbl">
       <table id="TS">
-        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th></tr></thead>
+        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th><th>BMI</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -209,7 +437,7 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
     <div class="ph"><div class="pav">👩</div><div><h3>Fateha</h3><p>Tap to enter weight (kg)</p></div></div>
     <div class="stbl">
       <table id="TF">
-        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th></tr></thead>
+        <thead><tr><th>#</th><th>📅 Date</th><th>⚖️ kg</th><th>BMI</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -227,12 +455,20 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
 <!-- CHART -->
 <div class="ccard">
   <div class="ctop">
-    <div><h2>📈 Weight Progress</h2><p>Jan–Jul 2026 · Swipe chart to scroll →</p></div>
-    <div class="cleg">
+    <div><h2 id="chartTitle">📈 Weight Progress</h2><p>Jan–Jul 2026 · Swipe to scroll →</p></div>
+    <div class="cleg" id="chartLegend">
       <div class="cli"><div class="cld" style="background:#22c55e"></div>Shahrul</div>
       <div class="cli"><div class="cld" style="background:#f472b6"></div>Fateha</div>
     </div>
   </div>
+
+  <!-- Chart mode tabs -->
+  <div class="chart-tabs">
+    <button class="ctab active" onclick="switchChart('weight',this)">⚖️ Weight (kg)</button>
+    <button class="ctab" onclick="switchChart('bmi',this)">📊 BMI Trend</button>
+    <button class="ctab" onclick="switchChart('both',this)">📈 Both</button>
+  </div>
+
   <div class="cpills">
     <div class="cp s">🧑 Shahrul: <b id="sCnt">0</b>/30 weeks</div>
     <div class="cp f">👩 Fateha: <b id="fCnt">0</b>/30 weeks</div>
@@ -248,442 +484,513 @@ input.bad { border-color:#ef4444!important; background:#fef2f2!important; color:
   </div>
 </div>
 
-<div class="foot">🌿 Healthy Journey 2026 · ☁️ Firebase Powered · Made with ❤️</div>
+<div class="foot">🌿 Healthy Journey 2026 · ☁️ Firebase Powered · BMI Monitoring ⚖️ · Made with ❤️</div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
-
 <script>
 'use strict';
 
-// ╔══════════════════════════════════════════════╗
-// ║  ✅ FIREBASE URL — YOUR DATABASE IS SET!     ║
-// ╚══════════════════════════════════════════════╝
+// ╔══════════════════════════════════╗
+// ║  ✅ FIREBASE URL                 ║
+// ╚══════════════════════════════════╝
 var DB_URL = 'https://weight-tracker-2026-default-rtdb.firebaseio.com';
 
-// ── Register Chart plugin ────────────────────────────────
+// ╔══════════════════════════════════╗
+// ║  👤 PERSON PROFILES              ║
+// ╚══════════════════════════════════╝
+var PROFILES = {
+  shahrul: { name:'Shahrul', age:35, height:169, idealMin:59, idealMax:71 },
+  fateha:  { name:'Fateha',  age:35, height:160, idealMin:53, idealMax:64 }
+};
+
+// Register plugin
 if (typeof Chart !== 'undefined' && typeof ChartDataLabels !== 'undefined') {
   Chart.register(ChartDataLabels);
 }
 
-// ── Generate all Fridays Jan 2 → Jul 31 2026 ────────────
+// Generate Fridays
 var LABELS = [];
 (function() {
-  var d   = new Date(2026, 0, 2);
-  var end = new Date(2026, 6, 31);
+  var d = new Date(2026,0,2), end = new Date(2026,6,31);
   while (d <= end) {
-    LABELS.push(d.toLocaleDateString('en-GB', {
-      day:'2-digit', month:'short', year:'numeric'
-    }));
-    d.setDate(d.getDate() + 7);
+    LABELS.push(d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}));
+    d.setDate(d.getDate()+7);
   }
 })();
-var N = LABELS.length; // 30 weeks
+var N = LABELS.length;
 
-// ── Build tables ─────────────────────────────────────────
-(function() {
+// Current chart mode
+var chartMode = 'weight';
+
+// ── BMI Calculation ───────────────────────────────────────
+function calcBMI(weight, heightCm) {
+  if (!weight || !heightCm) return null;
+  var h = heightCm / 100;
+  return Math.round((weight / (h * h)) * 10) / 10;
+}
+
+function getBMIClass(bmi) {
+  if (!bmi) return 'normal';
+  if (bmi < 18.5) return 'underweight';
+  if (bmi < 25)   return 'normal';
+  if (bmi < 30)   return 'overweight';
+  return 'obese';
+}
+
+function getBMIEmoji(bmi) {
+  if (!bmi) return '—';
+  if (bmi < 18.5) return '💙 Keep eating healthy!';
+  if (bmi < 25)   return '💚 Great! Keep it up!';
+  if (bmi < 30)   return '💛 Work harder, you can!';
+  return '❤️ Lets go! Stay motivated!';
+}
+
+// Convert BMI to needle position (%)
+function bmiToPercent(bmi) {
+  if (!bmi) return 0;
+  // Scale: 15=0%, 18.5=22%, 25=50%, 30=72%, 40=100%
+  if (bmi <= 15)  return 0;
+  if (bmi <= 18.5) return ((bmi-15)/(18.5-15))*22;
+  if (bmi <= 25)   return 22+((bmi-18.5)/(25-18.5))*28;
+  if (bmi <= 30)   return 50+((bmi-25)/(30-25))*22;
+  if (bmi <= 40)   return 72+((bmi-30)/(40-30))*28;
+  return 100;
+}
+
+// ── Update BMI Card ───────────────────────────────────────
+function updateBMICard(prefix, weights, profile) {
+  var filled = weights.filter(function(v){return v!==null;});
+  if (!filled.length) {
+    document.getElementById(prefix+'BmiNum').textContent  = '—';
+    document.getElementById(prefix+'BmiCat').textContent  = 'No data';
+    document.getElementById(prefix+'BmiEmoji').textContent= '—';
+    document.getElementById(prefix+'ToLose').textContent  = '—';
+    document.getElementById(prefix+'BmiChg').textContent  = '—';
+    document.getElementById(prefix+'Needle').style.left   = '0%';
+    return;
+  }
+
+  var latest  = filled[filled.length-1];
+  var first   = filled[0];
+  var bmi     = calcBMI(latest, profile.height);
+  var bmiFirst= calcBMI(first,  profile.height);
+  var cls     = getBMIClass(bmi);
+
+  // Number
+  var numEl = document.getElementById(prefix+'BmiNum');
+  numEl.textContent = bmi ? bmi.toFixed(1) : '—';
+  numEl.className = 'bmi-number ' + cls;
+
+  // Badge
+  var catEl = document.getElementById(prefix+'BmiCat');
+  var labels = {underweight:'Underweight',normal:'Normal ✅',overweight:'Overweight',obese:'Obese'};
+  catEl.textContent = bmi ? labels[cls] : 'No data';
+  catEl.className = 'bmi-badge ' + cls;
+
+  // Emoji message
+  document.getElementById(prefix+'BmiEmoji').textContent = getBMIEmoji(bmi);
+
+  // Needle position
+  document.getElementById(prefix+'Needle').style.left = bmiToPercent(bmi).toFixed(1)+'%';
+
+  // To lose
+  var toLoseEl = document.getElementById(prefix+'ToLose');
+  if (bmi && latest > profile.idealMax) {
+    var diff = (latest - profile.idealMax).toFixed(1);
+    toLoseEl.textContent = diff + ' kg';
+    toLoseEl.style.color = '#dc2626';
+  } else if (bmi && latest < profile.idealMin) {
+    var diff2 = (profile.idealMin - latest).toFixed(1);
+    toLoseEl.textContent = '+'+diff2+' kg';
+    toLoseEl.style.color = '#3b82f6';
+  } else {
+    toLoseEl.textContent = '✅ Ideal!';
+    toLoseEl.style.color = '#22c55e';
+  }
+
+  // BMI change
+  var chgEl = document.getElementById(prefix+'BmiChg');
+  if (filled.length >= 2 && bmiFirst) {
+    var bmiDiff = (bmi - bmiFirst).toFixed(1);
+    chgEl.textContent = bmiDiff > 0 ? '▲ +'+bmiDiff : '▼ '+bmiDiff;
+    chgEl.style.color = bmiDiff < 0 ? '#16a34a' : '#dc2626';
+  } else {
+    chgEl.textContent = '—';
+  }
+}
+
+// ── Build tables (now with BMI column) ───────────────────
+function buildTables() {
   ['TS','TF'].forEach(function(tid) {
-    var tb = document.querySelector('#' + tid + ' tbody');
-    for (var i = 0; i < N; i++) {
+    var tb = document.querySelector('#'+tid+' tbody');
+    for (var i=0; i<N; i++) {
       var tr = document.createElement('tr');
       tr.innerHTML =
-        '<td><span class="wk">W' + (i+1) + '</span></td>' +
-        '<td><span class="dt">' + LABELS[i] + '</span></td>' +
-        '<td><input type="number" id="' + tid + '_' + i + '" ' +
-        'placeholder="kg" min="30" max="300" step="0.1" ' +
-        'inputmode="decimal" oninput="onInp(this)"></td>';
+        '<td><span class="wk">W'+(i+1)+'</span></td>'+
+        '<td><span class="dt">'+LABELS[i]+'</span></td>'+
+        '<td><input type="number" id="'+tid+'_'+i+'" '+
+        'placeholder="kg" min="30" max="300" step="0.1" '+
+        'inputmode="decimal" oninput="onInp(this)"></td>'+
+        '<td><span class="bmi-cell" id="'+tid+'_bmi_'+i+'">—</span></td>';
       tb.appendChild(tr);
     }
   });
-})();
+}
+buildTables();
 
-// ── Input handler ────────────────────────────────────────
+// ── Update BMI cells in table ─────────────────────────────
+function updateBMICells(tid, weights, heightCm) {
+  for (var i=0; i<N; i++) {
+    var cell = document.getElementById(tid+'_bmi_'+i);
+    if (!cell) continue;
+    var w = weights[i];
+    if (w === null) { cell.textContent='—'; cell.className='bmi-cell'; continue; }
+    var bmi = calcBMI(w, heightCm);
+    var cls = getBMIClass(bmi);
+    cell.textContent = bmi ? bmi.toFixed(1) : '—';
+    cell.className = 'bmi-cell ' + cls;
+  }
+}
+
+// ── Input handler ─────────────────────────────────────────
 function onInp(el) {
   var v = parseFloat(el.value);
   el.className = '';
-  if (el.value === '') { doChart(); return; }
-  if (isNaN(v) || v < 30 || v > 300) { el.className = 'bad'; return; }
+  if (el.value==='') { doChart(); return; }
+  if (isNaN(v)||v<30||v>300) { el.className='bad'; return; }
   el.className = 'ok';
-  setSt('chg', '⚠️ Unsaved — tap ☁️ Save to Cloud!');
+  setSt('chg','⚠️ Unsaved — tap ☁️ Save to Cloud!');
   doChart();
 }
 
-// ── Read data from inputs ────────────────────────────────
+// ── Read weights ──────────────────────────────────────────
 function rd(tid) {
   var arr = [];
-  for (var i = 0; i < N; i++) {
-    var el = document.getElementById(tid + '_' + i);
-    if (!el || el.value === '' || el.className === 'bad') {
-      arr.push(null);
-    } else {
-      var v = parseFloat(el.value);
-      arr.push(isNaN(v) ? null : v);
-    }
+  for (var i=0; i<N; i++) {
+    var el = document.getElementById(tid+'_'+i);
+    if (!el||el.value===''||el.className==='bad') { arr.push(null); continue; }
+    var v = parseFloat(el.value);
+    arr.push(isNaN(v)?null:v);
   }
   return arr;
 }
 
-// ── Fill inputs from loaded array ─────────────────────────
+// ── Fill inputs ───────────────────────────────────────────
 function fillInputs(tid, arr) {
-  if (!arr || !Array.isArray(arr)) return;
-  for (var i = 0; i < N; i++) {
-    var el = document.getElementById(tid + '_' + i);
+  if (!arr||!Array.isArray(arr)) return;
+  for (var i=0; i<N; i++) {
+    var el = document.getElementById(tid+'_'+i);
     if (!el) continue;
     var v = arr[i];
-    if (v !== null && v !== undefined && !isNaN(Number(v)) && Number(v) >= 30 && Number(v) <= 300) {
-      el.value = Number(v);
-      el.className = 'ok';
-    } else {
-      el.value = '';
-      el.className = '';
-    }
+    if (v!==null&&v!==undefined&&!isNaN(Number(v))&&Number(v)>=30&&Number(v)<=300) {
+      el.value=Number(v); el.className='ok';
+    } else { el.value=''; el.className=''; }
   }
 }
 
 // ── Sync status ───────────────────────────────────────────
 function setSyncStatus(state, msg, sub) {
-  document.getElementById('syncDot').className = 'sync-dot ' + state;
-  document.getElementById('syncTxt').textContent = msg;
-  if (sub !== undefined) {
-    document.getElementById('syncTime').textContent = sub;
-  }
+  document.getElementById('syncDot').className='sync-dot '+state;
+  document.getElementById('syncTxt').textContent=msg;
+  if (sub!==undefined) document.getElementById('syncTime').textContent=sub;
 }
 
-// ╔══════════════════════════════════════════════╗
-// ║  ☁️  SAVE TO FIREBASE                        ║
-// ╚══════════════════════════════════════════════╝
-function doSave() {
-  var s = rd('TS');
-  var f = rd('TF');
-  var hasAny = s.concat(f).some(function(v) { return v !== null; });
-  if (!hasAny) {
-    showToast('⚠️ Enter at least one weight first!', 'orange');
-    return;
-  }
-
-  setSyncStatus('syncing', '☁️ Saving to cloud...');
-  showToast('☁️ Saving...', 'orange');
-
-  var now = new Date().toLocaleString('en-MY', {
-    day:'2-digit', month:'short', year:'numeric',
-    hour:'2-digit', minute:'2-digit'
-  });
-
-  fetch(DB_URL + '/weightTracker2026.json', {
-    method:  'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ shahrul:s, fateha:f, lastUpdated:now })
-  })
-  .then(function(res) {
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return res.json();
-  })
-  .then(function() {
-    setSyncStatus('online', '✅ Saved to cloud!', 'Last saved: ' + now);
-    setSt('ok', '✅ Saved at ' + now);
-    showToast('☁️ Saved! Fateha can now see your data! 🎉', 'green');
-  })
-  .catch(function(err) {
-    console.error('Save error:', err);
-    setSyncStatus('offline', '❌ Save failed!', 'Check internet connection');
-    showToast('❌ Save failed! Check your internet.', 'red');
-  });
-}
-
-// ╔══════════════════════════════════════════════╗
-// ║  ☁️  LOAD FROM FIREBASE                      ║
-// ╚══════════════════════════════════════════════╝
-function loadFromDB() {
-  setSyncStatus('syncing', '🔄 Loading shared data...');
-
-  fetch(DB_URL + '/weightTracker2026.json')
-  .then(function(res) {
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return res.json();
-  })
-  .then(function(data) {
-    if (!data) {
-      setSyncStatus('online',
-        '✅ Connected — No data saved yet',
-        'Enter weights & tap ☁️ Save to Cloud'
-      );
-      showToast('✅ Connected! No data saved yet.', 'orange');
-      return;
-    }
-
-    // Fill both tables
-    fillInputs('TS', data.shahrul);
-    fillInputs('TF', data.fateha);
-
-    var lu = data.lastUpdated || 'unknown';
-    setSyncStatus('online', '✅ Shared data loaded!', 'Last saved: ' + lu);
-    setSt('ok', '✅ Loaded · ' + lu);
-    showToast('✅ Shared data loaded!', 'green');
-    doChart();
-  })
-  .catch(function(err) {
-    console.error('Load error:', err);
-    setSyncStatus('offline',
-      '❌ Cannot reach database',
-      'Check internet connection'
-    );
-    showToast('❌ Cannot load data. Check internet!', 'red');
-  });
-}
-
-// ── Update stat cards ─────────────────────────────────────
+// ── Update stats ──────────────────────────────────────────
 function updStats(sA, fA) {
-  var sf = sA.filter(function(v) { return v !== null; });
-  var ff = fA.filter(function(v) { return v !== null; });
-
-  document.getElementById('sCnt').textContent = sf.length;
-  document.getElementById('fCnt').textContent = ff.length;
-  document.getElementById('sLat').textContent = sf.length ? sf[sf.length-1] + ' kg' : '— kg';
-  document.getElementById('fLat').textContent = ff.length ? ff[ff.length-1] + ' kg' : '— kg';
-
-  function chg(a, id) {
-    var el = document.getElementById(id);
-    if (a.length < 2) { el.textContent = '—'; el.className = 'sv'; return; }
-    var diff = (a[a.length-1] - a[0]).toFixed(1);
-    el.textContent = diff > 0 ? '▲ +'+diff+' kg' : diff < 0 ? '▼ '+diff+' kg' : '● 0 kg';
-    el.className = 'sv ' + (diff < 0 ? 'loss' : diff > 0 ? 'gain' : '');
+  var sf=sA.filter(function(v){return v!==null;});
+  var ff=fA.filter(function(v){return v!==null;});
+  document.getElementById('sCnt').textContent=sf.length;
+  document.getElementById('fCnt').textContent=ff.length;
+  document.getElementById('sLat').textContent=sf.length?sf[sf.length-1]+' kg':'— kg';
+  document.getElementById('fLat').textContent=ff.length?ff[ff.length-1]+' kg':'— kg';
+  function chg(a,id){
+    var el=document.getElementById(id);
+    if(a.length<2){el.textContent='—';el.className='sv';return;}
+    var d=(a[a.length-1]-a[0]).toFixed(1);
+    el.textContent=d>0?'▲ +'+d+' kg':d<0?'▼ '+d+' kg':'● 0 kg';
+    el.className='sv '+(d<0?'loss':d>0?'gain':'');
   }
-  chg(sf, 'sCh');
-  chg(ff, 'fCh');
+  chg(sf,'sCh'); chg(ff,'fCh');
+
+  // Update BMI cards
+  updateBMICard('s', sA, PROFILES.shahrul);
+  updateBMICard('f', fA, PROFILES.fateha);
+
+  // Update BMI cells in tables
+  updateBMICells('TS', sA, PROFILES.shahrul.height);
+  updateBMICells('TF', fA, PROFILES.fateha.height);
+}
+
+// ── Switch chart mode ─────────────────────────────────────
+function switchChart(mode, btn) {
+  chartMode = mode;
+  document.querySelectorAll('.ctab').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  doChart();
 }
 
 // ── Draw Chart ────────────────────────────────────────────
 var CH = null;
 
 function doChart() {
-  if (typeof Chart === 'undefined') return;
-
-  var sA = rd('TS');
-  var fA = rd('TF');
+  if (typeof Chart==='undefined') return;
+  var sA=rd('TS'), fA=rd('TF');
   updStats(sA, fA);
 
-  var all = sA.concat(fA).filter(function(v) { return v !== null; });
-  document.getElementById('noData').style.display = all.length ? 'none' : 'flex';
+  // Calculate BMI arrays
+  var sBMI = sA.map(function(v){ return v?calcBMI(v,PROFILES.shahrul.height):null; });
+  var fBMI = fA.map(function(v){ return v?calcBMI(v,PROFILES.fateha.height):null; });
 
-  if (CH) { CH.destroy(); CH = null; }
+  var all = [];
+  if (chartMode==='weight'||chartMode==='both') all=all.concat(sA.filter(function(v){return v!==null;})).concat(fA.filter(function(v){return v!==null;}));
+  if (chartMode==='bmi'||chartMode==='both') all=all.concat(sBMI.filter(function(v){return v!==null;})).concat(fBMI.filter(function(v){return v!==null;}));
+
+  document.getElementById('noData').style.display=all.length?'none':'flex';
+  if (CH){CH.destroy();CH=null;}
   if (!all.length) return;
 
-  var yMin = Math.floor(Math.min.apply(null, all)) - 2;
-  var yMax = Math.ceil(Math.max.apply(null, all))  + 3;
+  var yMin=Math.floor(Math.min.apply(null,all))-2;
+  var yMax=Math.ceil(Math.max.apply(null,all))+3;
 
-  var ctx = document.getElementById('myChart').getContext('2d');
+  var ctx=document.getElementById('myChart').getContext('2d');
 
-  var sg = ctx.createLinearGradient(0,0,0,360);
-  sg.addColorStop(0, 'rgba(34,197,94,0.45)');
-  sg.addColorStop(1, 'rgba(34,197,94,0.02)');
+  // Gradients
+  var sg=ctx.createLinearGradient(0,0,0,360);
+  sg.addColorStop(0,'rgba(34,197,94,0.4)'); sg.addColorStop(1,'rgba(34,197,94,0.02)');
+  var fg=ctx.createLinearGradient(0,0,0,360);
+  fg.addColorStop(0,'rgba(244,114,182,0.4)'); fg.addColorStop(1,'rgba(244,114,182,0.02)');
+  var sbg=ctx.createLinearGradient(0,0,0,360);
+  sbg.addColorStop(0,'rgba(59,130,246,0.3)'); sbg.addColorStop(1,'rgba(59,130,246,0.02)');
+  var fbg=ctx.createLinearGradient(0,0,0,360);
+  fbg.addColorStop(0,'rgba(168,85,247,0.3)'); fbg.addColorStop(1,'rgba(168,85,247,0.02)');
 
-  var fg = ctx.createLinearGradient(0,0,0,360);
-  fg.addColorStop(0, 'rgba(244,114,182,0.45)');
-  fg.addColorStop(1, 'rgba(244,114,182,0.02)');
+  function mkPR(arr){ return arr.map(function(v){return v!==null?6:0;}); }
+  function mkPC(arr,col){ return arr.map(function(v){return v!==null?col:'transparent';}); }
 
-  var sPR = sA.map(function(v) { return v !== null ? 7 : 0; });
-  var fPR = fA.map(function(v) { return v !== null ? 7 : 0; });
-  var sPC = sA.map(function(v) { return v !== null ? '#22c55e' : 'transparent'; });
-  var fPC = fA.map(function(v) { return v !== null ? '#f472b6' : 'transparent'; });
+  var datasets = [];
+
+  if (chartMode==='weight'||chartMode==='both') {
+    datasets.push({
+      label:'Shahrul (kg)', data:sA, borderColor:'#22c55e', backgroundColor:sg,
+      borderWidth:3, pointRadius:mkPR(sA),
+      pointHoverRadius:sA.map(function(v){return v?10:0;}),
+      pointBackgroundColor:mkPC(sA,'#22c55e'),
+      pointBorderColor:'#fff', pointBorderWidth:2,
+      tension:0.4, spanGaps:true, fill:true, yAxisID:'y'
+    });
+    datasets.push({
+      label:'Fateha (kg)', data:fA, borderColor:'#f472b6', backgroundColor:fg,
+      borderWidth:3, pointRadius:mkPR(fA),
+      pointHoverRadius:fA.map(function(v){return v?10:0;}),
+      pointBackgroundColor:mkPC(fA,'#f472b6'),
+      pointBorderColor:'#fff', pointBorderWidth:2,
+      tension:0.4, spanGaps:true, fill:true, yAxisID:'y'
+    });
+  }
+
+  if (chartMode==='bmi'||chartMode==='both') {
+    datasets.push({
+      label:'Shahrul BMI', data:sBMI, borderColor:'#3b82f6', backgroundColor:sbg,
+      borderWidth:2, borderDash:[5,4],
+      pointRadius:mkPR(sBMI),
+      pointHoverRadius:sBMI.map(function(v){return v?10:0;}),
+      pointBackgroundColor:mkPC(sBMI,'#3b82f6'),
+      pointBorderColor:'#fff', pointBorderWidth:2,
+      tension:0.4, spanGaps:true, fill:chartMode==='bmi',
+      yAxisID: chartMode==='both'?'y2':'y'
+    });
+    datasets.push({
+      label:'Fateha BMI', data:fBMI, borderColor:'#a855f7', backgroundColor:fbg,
+      borderWidth:2, borderDash:[5,4],
+      pointRadius:mkPR(fBMI),
+      pointHoverRadius:fBMI.map(function(v){return v?10:0;}),
+      pointBackgroundColor:mkPC(fBMI,'#a855f7'),
+      pointBorderColor:'#fff', pointBorderWidth:2,
+      tension:0.4, spanGaps:true, fill:chartMode==='bmi',
+      yAxisID: chartMode==='both'?'y2':'y'
+    });
+  }
+
+  // Update legend
+  var leg = document.getElementById('chartLegend');
+  var colors = {'#22c55e':'Shahrul (kg)','#f472b6':'Fateha (kg)','#3b82f6':'Shahrul BMI','#a855f7':'Fateha BMI'};
+  leg.innerHTML = '';
+  datasets.forEach(function(ds){
+    leg.innerHTML += '<div class="cli"><div class="cld" style="background:'+ds.borderColor+'"></div>'+ds.label+'</div>';
+  });
+
+  // Scales
+  var scales = {
+    x:{
+      grid:{color:'rgba(0,0,0,0.06)'}, border:{display:false},
+      ticks:{color:'#6b7280',font:{size:9,weight:'600'},maxRotation:45,minRotation:45,autoSkip:false},
+      title:{display:true,text:'Date (Every Friday — Jan to Jul 2026)',color:'#15803d',font:{size:11,weight:'700'}}
+    },
+    y:{
+      min:yMin, max:yMax,
+      grid:{color:'rgba(0,0,0,0.06)'}, border:{display:false},
+      ticks:{color:'#6b7280',font:{size:11},callback:function(v){return chartMode==='bmi'?v+' BMI':v+' kg';},stepSize:1},
+      title:{display:true,text:chartMode==='bmi'?'BMI Value':'Weight (kg)',color:'#15803d',font:{size:11,weight:'700'}}
+    }
+  };
+
+  // Add second Y axis for "both" mode
+  if (chartMode==='both') {
+    var bmiVals=sBMI.concat(fBMI).filter(function(v){return v!==null;});
+    if(bmiVals.length){
+      scales.y2={
+        type:'linear', position:'right',
+        min:Math.floor(Math.min.apply(null,bmiVals))-1,
+        max:Math.ceil(Math.max.apply(null,bmiVals))+1,
+        grid:{display:false}, border:{display:false},
+        ticks:{color:'#6b7280',font:{size:10},callback:function(v){return v+' BMI';}},
+        title:{display:true,text:'BMI Value',color:'#3b82f6',font:{size:10,weight:'700'}}
+      };
+    }
+  }
 
   CH = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: LABELS,
-      datasets: [
-        {
-          label: 'Shahrul',
-          data:  sA,
-          borderColor: '#22c55e',
-          backgroundColor: sg,
-          borderWidth: 3,
-          pointRadius: sPR,
-          pointHoverRadius: sPR.map(function(v){ return v ? v+4 : 0; }),
-          pointBackgroundColor: sPC,
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2,
-          tension: 0.4,
-          spanGaps: true,
-          fill: true
-        },
-        {
-          label: 'Fateha',
-          data:  fA,
-          borderColor: '#f472b6',
-          backgroundColor: fg,
-          borderWidth: 3,
-          pointRadius: fPR,
-          pointHoverRadius: fPR.map(function(v){ return v ? v+4 : 0; }),
-          pointBackgroundColor: fPC,
-          pointBorderColor: '#fff',
-          pointBorderWidth: 2,
-          tension: 0.4,
-          spanGaps: true,
-          fill: true
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 600 },
-      layout: { padding: { top:44, right:20, bottom:6, left:6 } },
-      interaction: { mode:'index', intersect:false },
-      plugins: {
-        legend: { display:false },
-        tooltip: {
-          backgroundColor: '#15803d',
-          titleColor: '#fff',
-          bodyColor: '#dcfce7',
-          borderColor: '#86efac',
-          borderWidth: 1,
-          padding: 12,
-          cornerRadius: 10,
-          callbacks: {
-            label: function(c) {
-              return c.raw !== null
-                ? '  ' + c.dataset.label + ': ' + c.raw + ' kg'
-                : '  ' + c.dataset.label + ': —';
+    type:'line',
+    data:{ labels:LABELS, datasets:datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      animation:{duration:500},
+      layout:{padding:{top:44,right:20,bottom:6,left:6}},
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#15803d', titleColor:'#fff', bodyColor:'#dcfce7',
+          borderColor:'#86efac', borderWidth:1, padding:12, cornerRadius:10,
+          callbacks:{
+            label:function(c){
+              return c.raw!==null
+                ? '  '+c.dataset.label+': '+c.raw+(c.dataset.label.includes('BMI')?' BMI':' kg')
+                : '  '+c.dataset.label+': —';
             }
           }
         },
-        datalabels: {
-          display: function(ctx) {
-            return ctx.dataset.data[ctx.dataIndex] !== null;
+        datalabels:{
+          display:function(ctx){ return ctx.dataset.data[ctx.dataIndex]!==null; },
+          formatter:function(v,ctx){
+            return ctx.dataset.label.includes('BMI') ? v.toFixed(1) : v+' kg';
           },
-          formatter: function(v) { return v + ' kg'; },
-          align: 'top', anchor: 'end', offset: 6,
-          color: function(ctx) { return ctx.dataset.borderColor; },
-          backgroundColor: '#fff',
-          borderColor: function(ctx) { return ctx.dataset.borderColor; },
-          borderWidth: 1.5, borderRadius: 6,
-          font: { weight:'bold', size:10 },
-          padding: { top:2, bottom:2, left:5, right:5 }
+          align:'top', anchor:'end', offset:6,
+          color:function(ctx){ return ctx.dataset.borderColor; },
+          backgroundColor:'#fff',
+          borderColor:function(ctx){ return ctx.dataset.borderColor; },
+          borderWidth:1.5, borderRadius:6,
+          font:{weight:'bold',size:9},
+          padding:{top:2,bottom:2,left:4,right:4}
         }
       },
-      scales: {
-        x: {
-          grid: { color:'rgba(0,0,0,0.06)' },
-          border: { display:false },
-          ticks: {
-            color: '#6b7280',
-            font: { size:9, weight:'600' },
-            maxRotation: 45, minRotation: 45,
-            autoSkip: false
-          },
-          title: {
-            display: true,
-            text: 'Date (Every Friday — Jan to Jul 2026)',
-            color: '#15803d',
-            font: { size:11, weight:'700' }
-          }
-        },
-        y: {
-          min: yMin, max: yMax,
-          grid: { color:'rgba(0,0,0,0.06)' },
-          border: { display:false },
-          ticks: {
-            color: '#6b7280',
-            font: { size:11 },
-            callback: function(v) { return v + ' kg'; },
-            stepSize: 1
-          },
-          title: {
-            display: true,
-            text: 'Weight (kg)',
-            color: '#15803d',
-            font: { size:11, weight:'700' }
-          }
-        }
-      }
+      scales:scales
     }
   });
 }
 
-// ── Download CSV ──────────────────────────────────────────
-function doCSV() {
-  var s = rd('TS'), f = rd('TF');
-  if (!s.concat(f).some(function(v){ return v!==null; })) {
-    showToast('⚠️ No data to export!', 'orange'); return;
-  }
-  var rows = ['Week,Date,Shahrul (kg),Fateha (kg),Difference (kg)'];
-  for (var i = 0; i < N; i++) {
-    var sv = s[i]!==null ? s[i] : '';
-    var fv = f[i]!==null ? f[i] : '';
-    var df = (s[i]!==null && f[i]!==null) ? (s[i]-f[i]).toFixed(1) : '';
-    rows.push('W'+(i+1)+','+LABELS[i]+','+sv+','+fv+','+df);
-  }
-  var sf = s.filter(function(v){return v!==null;});
-  var ff = f.filter(function(v){return v!==null;});
-  rows.push('','--- SUMMARY ---',
-    'Shahrul Start,'  + (sf.length ? sf[0]+' kg' : 'N/A'),
-    'Shahrul Latest,' + (sf.length ? sf[sf.length-1]+' kg' : 'N/A'),
-    'Shahrul Change,' + (sf.length>=2 ? (sf[sf.length-1]-sf[0]).toFixed(1)+' kg' : 'N/A'),
-    'Fateha Start,'   + (ff.length ? ff[0]+' kg' : 'N/A'),
-    'Fateha Latest,'  + (ff.length ? ff[ff.length-1]+' kg' : 'N/A'),
-    'Fateha Change,'  + (ff.length>=2 ? (ff[ff.length-1]-ff[0]).toFixed(1)+' kg' : 'N/A'),
-    'Exported,'       + new Date().toLocaleString()
-  );
-  var b = new Blob([rows.join('\n')], {type:'text/csv'});
-  var u = URL.createObjectURL(b);
-  var a = document.createElement('a');
-  a.href=u; a.download='weight_tracker_2026.csv';
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a); URL.revokeObjectURL(u);
-  showToast('📥 CSV downloaded!', 'green');
+// ── Save ──────────────────────────────────────────────────
+function doSave() {
+  var s=rd('TS'), f=rd('TF');
+  if(!s.concat(f).some(function(v){return v!==null;})){showToast('⚠️ Enter weights first!','orange');return;}
+  setSyncStatus('syncing','☁️ Saving...');
+  var now=new Date().toLocaleString('en-MY',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  fetch(DB_URL+'/weightTracker2026.json',{
+    method:'PUT', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({shahrul:s,fateha:f,lastUpdated:now})
+  })
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(){
+    setSyncStatus('online','✅ Saved to cloud!','Last saved: '+now);
+    setSt('ok','✅ Saved at '+now);
+    showToast('☁️ Saved! Fateha can now see your data! 🎉','green');
+  })
+  .catch(function(e){setSyncStatus('offline','❌ Save failed!',e.message);showToast('❌ Save failed!','red');});
 }
 
-// ── Clear all ─────────────────────────────────────────────
-function doClear() {
-  if (!confirm('🗑️ Delete ALL cloud data?\n\nThis clears BOTH Shahrul & Fateha data!\nThis cannot be undone!')) return;
-
-  fetch(DB_URL + '/weightTracker2026.json', { method:'DELETE' })
-  .then(function() {
-    for (var i=0; i<N; i++) {
-      ['TS','TF'].forEach(function(t) {
-        var el = document.getElementById(t+'_'+i);
-        if (el) { el.value=''; el.className=''; }
-      });
-    }
-    setSyncStatus('online','✅ Cloud data cleared','Start fresh anytime');
-    setSt('clr','🗑️ All data cleared from cloud');
-    showToast('🗑️ All cloud data deleted!','red');
+// ── Load ──────────────────────────────────────────────────
+function loadFromDB() {
+  setSyncStatus('syncing','🔄 Loading shared data...');
+  fetch(DB_URL+'/weightTracker2026.json')
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(data){
+    if(!data){setSyncStatus('online','✅ Connected — No data yet','Enter weights & tap ☁️ Save');showToast('✅ Connected! No data yet.','orange');return;}
+    fillInputs('TS',data.shahrul);
+    fillInputs('TF',data.fateha);
+    var lu=data.lastUpdated||'unknown';
+    setSyncStatus('online','✅ Shared data loaded!','Last saved: '+lu);
+    setSt('ok','✅ Loaded · '+lu);
+    showToast('✅ Latest shared data loaded!','green');
     doChart();
   })
-  .catch(function() {
-    showToast('❌ Delete failed — check internet!','red');
-  });
+  .catch(function(e){setSyncStatus('offline','❌ Cannot connect','Check internet');showToast('❌ Cannot load data!','red');});
 }
 
-// ── UI Helpers ────────────────────────────────────────────
-function setSt(type, msg) {
-  var p = document.getElementById('spill');
-  p.className = 'spill ' + (type==='ok' ? 'ok' : type==='chg' ? 'chg' : 'clr');
-  document.getElementById('stxt').textContent = msg;
+// ── Clear ─────────────────────────────────────────────────
+function doClear() {
+  if(!confirm('🗑️ Delete ALL cloud data?\nClears BOTH Shahrul & Fateha. Cannot undo!')) return;
+  fetch(DB_URL+'/weightTracker2026.json',{method:'DELETE'})
+  .then(function(){
+    for(var i=0;i<N;i++){['TS','TF'].forEach(function(t){var el=document.getElementById(t+'_'+i);if(el){el.value='';el.className='';} var bc=document.getElementById(t+'_bmi_'+i);if(bc){bc.textContent='—';bc.className='bmi-cell';}});}
+    setSyncStatus('online','✅ Cleared','Start fresh!');
+    setSt('clr','🗑️ Cleared');
+    showToast('🗑️ All data deleted!','red');
+    doChart();
+  })
+  .catch(function(){showToast('❌ Delete failed!','red');});
 }
 
+// ── CSV ───────────────────────────────────────────────────
+function doCSV() {
+  var s=rd('TS'), f=rd('TF');
+  if(!s.concat(f).some(function(v){return v!==null;})){showToast('⚠️ No data!','orange');return;}
+  var rows=['Week,Date,Shahrul (kg),Shahrul BMI,Shahrul BMI Cat,Fateha (kg),Fateha BMI,Fateha BMI Cat'];
+  for(var i=0;i<N;i++){
+    var sw=s[i]!==null?s[i]:'', fw=f[i]!==null?f[i]:'';
+    var sb=s[i]?calcBMI(s[i],PROFILES.shahrul.height):'', fb=f[i]?calcBMI(f[i],PROFILES.fateha.height):'';
+    var sc=sb?getBMIClass(sb):'', fc=fb?getBMIClass(fb):'';
+    rows.push('W'+(i+1)+','+LABELS[i]+','+sw+','+(sb?sb.toFixed(1):'')+','+sc+','+fw+','+(fb?fb.toFixed(1):'')+','+fc);
+  }
+  var sf=s.filter(function(v){return v!==null;}), ff=f.filter(function(v){return v!==null;});
+  rows.push('','--- SUMMARY ---',
+    'Shahrul Start Weight,'+(sf.length?sf[0]+' kg':'N/A'),
+    'Shahrul Latest Weight,'+(sf.length?sf[sf.length-1]+' kg':'N/A'),
+    'Shahrul Weight Change,'+(sf.length>=2?(sf[sf.length-1]-sf[0]).toFixed(1)+' kg':'N/A'),
+    'Shahrul Latest BMI,'+(sf.length?calcBMI(sf[sf.length-1],PROFILES.shahrul.height).toFixed(1):'N/A'),
+    'Shahrul BMI Category,'+(sf.length?getBMIClass(calcBMI(sf[sf.length-1],PROFILES.shahrul.height)):'N/A'),
+    '',
+    'Fateha Start Weight,'+(ff.length?ff[0]+' kg':'N/A'),
+    'Fateha Latest Weight,'+(ff.length?ff[ff.length-1]+' kg':'N/A'),
+    'Fateha Weight Change,'+(ff.length>=2?(ff[ff.length-1]-ff[0]).toFixed(1)+' kg':'N/A'),
+    'Fateha Latest BMI,'+(ff.length?calcBMI(ff[ff.length-1],PROFILES.fateha.height).toFixed(1):'N/A'),
+    'Fateha BMI Category,'+(ff.length?getBMIClass(calcBMI(ff[ff.length-1],PROFILES.fateha.height)):'N/A'),
+    '','Exported,'+new Date().toLocaleString()
+  );
+  var b=new Blob([rows.join('\n')],{type:'text/csv'});
+  var u=URL.createObjectURL(b); var a=document.createElement('a');
+  a.href=u; a.download='weight_bmi_tracker_2026.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(u);
+  showToast('📥 CSV with BMI downloaded!','green');
+}
+
+// ── Helpers ───────────────────────────────────────────────
+function setSt(type,msg){
+  var p=document.getElementById('spill');
+  p.className='spill '+(type==='ok'?'ok':type==='chg'?'chg':'clr');
+  document.getElementById('stxt').textContent=msg;
+}
 var TT;
-function showToast(msg, col) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + col;
-  clearTimeout(TT);
-  TT = setTimeout(function() { t.className = 'toast'; }, 3500);
+function showToast(msg,col){
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+col;
+  clearTimeout(TT); TT=setTimeout(function(){t.className='toast';},3500);
 }
 
 // ── INIT ──────────────────────────────────────────────────
-window.onload = function() {
-  loadFromDB(); // Auto-load shared data when page opens
-};
+window.onload = function() { loadFromDB(); };
 </script>
 </body>
 </html>
-
-							<script>
-                            	
-							</script>
-                        </body>
-                        </html>
-                    
